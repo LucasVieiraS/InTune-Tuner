@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
+  isRecording = false;
+
   constructor() {}
+
+  setRecording() {
+    this.isRecording = !this.isRecording;
+  }
 
 }

@@ -1,0 +1,132 @@
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  img {
+    filter: invert(1);
+    scale: .8;
+    user-select: none;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.metronome {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 250px;
+  justify-content: space-between;
+}
+.bpm-display {
+  width: 100%;
+  text-align: center;
+  color: #ff660e;
+  font-weight: bold;
+}
+.bpm-display .tempo {
+  font-size: 4em;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  background-color: transparent;
+  width: 70%;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fa545c;
+  cursor: pointer;
+  margin-top: -8px;
+}
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fa545c;
+  cursor: pointer;
+  border: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+}
+
+.tempo-settings {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.bpm-display-2 {
+  width: 100%;
+  text-align: center;
+  color: #ff660e;
+  font-weight: bold;
+}
+.bpm-display-2 .tempo-2 {
+  font-size: 2em;
+}
+
+ion-chip {
+
+  width: 80px;
+  height: 50px;
+
+  border-radius: 90%;
+
+  padding: 0;
+  margin: 0;
+
+  ion-icon {
+    margin: auto;
+    width: 70%;
+    height: 70%;
+    transition: .2s ease-in;
+  }
+}
+
+.beat-per-measure {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 70vw;
+  height: 10vh;
+  margin: auto;
+  margin-top: 1rem;
+  ion-chip {
+    width: 90px;
+    height: 50px;
+  }
+}
+
+span {
+  user-select: none;
+}

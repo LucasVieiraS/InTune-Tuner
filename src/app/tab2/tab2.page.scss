@@ -18,18 +18,24 @@ blockquote {
 }
 
 ion-list {
-  padding: 1rem;
   width: 90vw;
 
+  padding: .5rem;
   margin: auto;
 }
 
 h2 {
   color: white;
   font-weight: 600;
+  text-align: center;
 
   width: 90vw;
+  padding: 0;
+
   margin: auto;
+
+  margin-top: 1rem;
+  margin-bottom: 0rem;
 }
 
 ion-chip {
@@ -55,4 +61,46 @@ ion-chip {
     height: 70%;
     transition: .2s ease-in;
   }
+}
+
+ion-item-sliding {
+  width: 100%;
+}
+
+.recording-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  width: 100%;
+}
+
+.recording-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 20%;
+  height: 100%;
+  ion-icon {
+    transition: .3s ease-in;
+  }
+  ion-icon:hover {
+    opacity: .5;
+  }
+}
+
+.error-message {
+  text-align: center;
+}
+
+.error-mic {
+  font-size: 10rem;
+}
+
+.error-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }

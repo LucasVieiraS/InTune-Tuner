@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
+import { MetronomeService } from './../services/metronome.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
 
   bpm = 145;
   holdingBPM = false;
 
-  bpm2 = 4;
+  beatsPerMeasure = 4;
 
-  constructor() { }
+  metronome;
+  metronomeActivated = false;
+
+  constructor(public metronomeService: MetronomeService) { }
 
   /* BEATS PER MINUTE */
   setBPM(increment: number) {
@@ -21,6 +25,7 @@ export class Tab3Page {
     } else {
       this.bpm = 145;
     }
+    this.metronome.timeInterval = 60000 / this.bpm;
   }
 
   startLoop(increment: number) {
@@ -48,11 +53,27 @@ export class Tab3Page {
   /* BEATS PER MEASURE */
   setBPM2(increment: number) {
     this.holdingBPM = false;
-    if (this.bpm2 + increment > 0 && this.bpm2 + increment < 15) {
-      this.bpm2 += increment;
+    if (this.beatsPerMeasure + increment > 0 && this.beatsPerMeasure + increment < 15) {
+      this.beatsPerMeasure += increment;
     } else {
-      this.bpm2 = this.bpm2 === 15 && 1 || 15 ;
+      this.beatsPerMeasure = this.beatsPerMeasure === 15 && 1 || 15 ;
+    }
+    this.metronome.beatsPerMeasure = this.beatsPerMeasure;
+  }
+
+  startMetronome() {
+    /* eslint-disable no-unused-expressions */
+    this.metronomeActivated = !this.metronomeActivated;
+    if (this.metronomeActivated) {
+      this.metronome.start();
+    } else {
+      this.metronome.stop();
     }
   }
 
+  /* METRONOME FUNCTIONS */
+  ngOnInit() {
+    this.metronome = this.metronomeService.timer(60000 / this.bpm, { immediate: true });
+    this.metronome.beatsPerMeasure = this.beatsPerMeasure;
+  }
 }

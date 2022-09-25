@@ -44,9 +44,30 @@ ion-segment-button.ios::part(indicator-background) {
 .background-image {
   height: 100%;
   width: 100%;
+  position: fixed;
   display: block;
   background-size: cover;
   background-repeat: no-repeat;
   filter: invert(1);
   opacity: .1;
+}
+
+.note {
+  user-select: none;
+  font-size: 7rem;
+}
+
+.note-warning {
+  margin-bottom: 5rem;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

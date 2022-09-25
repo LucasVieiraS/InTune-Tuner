@@ -13,18 +13,23 @@
     </blockquote>
     <h2>RECORDED TRACKS</h2>
   </ion-grid>
-  <ion-list>
-    <ion-card>
-      <ion-item class="ion-activated">
-        <ion-icon name="play" style="font-size: 1.7rem" color="success" slot="start"></ion-icon>
-        <ion-label>START RECORDING</ion-label>
-      </ion-item>
+  <ion-list [inset]="true">
+    <ion-item-sliding *ngFor="let file of storedFileNames">
 
       <ion-item>
-        <ion-icon name="square" color="danger" slot="start"></ion-icon>
-        <ion-label>STOP RECORDING</ion-label>
+        <ion-label>{{ file.name }}</ion-label>
+        <ion-icon button (click)="playFile(file, null)" [name]="playingAudio === file.name && 'stop' || 'play'" style="font-size: 1.7rem" [color]="playingAudio === file.name && 'danger' || 'success'"></ion-icon>
       </ion-item>
-    </ion-card>
+
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="promptFileDeletal(file)">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item id="error-item" *ngIf="storedFileNames.length === 0">
+      <p class="error-message">It seems like you haven't recorded anything yet, you should try!</p>
+      <ion-icon name="mic" class="error-mic" color="danger"></ion-icon>
+    </ion-item>
   </ion-list>
   <ion-chip [color]="isRecording === true && 'danger' || 'dark'" [outline]="true" (click)="setRecording()">
     <ion-icon name="mic" [color]="isRecording === true && 'danger' || 'dark'"></ion-icon>

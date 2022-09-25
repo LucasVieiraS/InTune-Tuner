@@ -8,8 +8,25 @@
 
 <ion-content [fullscreen]="true">
   <ion-grid>
-    <div>
-      <h3>Create loops and get to jamming!</h3>
-    </div>
+    <blockquote>
+      <ion-label>Create your own <span>loops</span> and play them whenever you want!</ion-label>
+    </blockquote>
+    <h2>RECORDED TRACKS</h2>
   </ion-grid>
+  <ion-list>
+    <ion-card>
+      <ion-item class="ion-activated">
+        <ion-icon name="play" style="font-size: 1.7rem" color="success" slot="start"></ion-icon>
+        <ion-label>START RECORDING</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="square" color="danger" slot="start"></ion-icon>
+        <ion-label>STOP RECORDING</ion-label>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+  <ion-chip color="dark" [outline]="true">
+    <ion-icon name="mic"></ion-icon>
+  </ion-chip>
 </ion-content>

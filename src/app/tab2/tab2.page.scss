@@ -1,0 +1,57 @@
+blockquote {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  background: linear-gradient(90deg, rgba(255,34,246,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+
+  border-radius: 6px;
+  width: 90vw;
+
+  margin: auto;
+  margin-top: 1rem;
+
+  ion-label {
+    padding: .75rem;
+    font-weight: 500;
+  }
+}
+
+ion-list {
+  padding: 1rem;
+  width: 90vw;
+
+  margin: auto;
+}
+
+h2 {
+  color: white;
+  font-weight: 600;
+
+  width: 90vw;
+  margin: auto;
+}
+
+ion-chip {
+  position: absolute;
+  bottom: 4.5rem;
+  left: 50%;
+
+  width: 4rem;
+  height: 4rem;
+
+  border-radius: 90%;
+
+  padding: 0;
+  margin: 0;
+
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+  ion-icon {
+    margin: auto;
+    width: 70%;
+    height: 70%;
+  }
+}

@@ -26,6 +26,7 @@
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
     "ionicons": "^6.0.3",
+    "node-p5": "^1.0.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -42,6 +43,7 @@
     "@angular/language-service": "^14.0.0",
     "@capacitor/cli": "4.3.0",
     "@ionic/angular-toolkit": "^6.0.0",
+    "@ionic/lab": "3.2.13",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",

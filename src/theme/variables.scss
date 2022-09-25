@@ -74,6 +74,13 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  --ion-color-logo-theme: #b84dff;
+	--ion-color-logo-theme-rgb: 184,77,255;
+	--ion-color-logo-theme-contrast: #000000;
+	--ion-color-logo-theme-contrast-rgb: 0,0,0;
+	--ion-color-logo-theme-shade: #a244e0;
+	--ion-color-logo-theme-tint: #bf5fff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -145,7 +152,15 @@
     --ion-color-light-contrast-rgb: 255,255,255;
     --ion-color-light-shade: #1e2023;
     --ion-color-light-tint: #383a3e;
+
+    --ion-color-logo-theme: #ff3a24;
+    --ion-color-logo-theme-rgb: 255,58,36;
+    --ion-color-logo-theme-contrast: #ffffff;
+    --ion-color-logo-theme-contrast-rgb: 255,255,255;
+    --ion-color-logo-theme-shade: #e03320;
+    --ion-color-logo-theme-tint: #ff4e3a;
   }
+
 
   /*
    * iOS Dark Theme
@@ -233,4 +248,13 @@
 
     --ion-card-background: #1e1e1e;
   }
+}
+
+.ion-color-logo-theme {
+	--ion-color-base: var(--ion-color-logo-theme);
+	--ion-color-base-rgb: var(--ion-color-logo-theme-rgb);
+	--ion-color-contrast: var(--ion-color-logo-theme-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-logo-theme-contrast-rgb);
+	--ion-color-shade: var(--ion-color-logo-theme-shade);
+	--ion-color-tint: var(--ion-color-logo-theme-tint);
 }

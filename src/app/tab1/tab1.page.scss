@@ -1,0 +1,42 @@
+/* Ion Segment */
+
+ion-segment-button {
+  --color-selected: white;
+  ion-icon {
+    filter: invert(1);
+  }
+  ion-label {
+    color: white;
+  }
+}
+
+ion-segment-button::part(indicator-background) {
+  background: #a72f00;
+}
+
+ion-segment-button.md::part(native) {
+  color: #000;
+}
+
+.segment-button-checked.md::part(native) {
+  color: #a32c08;
+}
+
+ion-segment-button.md::part(indicator-background) {
+  height: 4px;
+}
+
+/* iOS styles */
+ion-segment-button.ios::part(native) {
+  color: #a30889;
+}
+
+.segment-button-checked.ios::part(native) {
+  color: #fff;
+}
+
+ion-segment-button.ios::part(indicator-background) {
+  border-radius: 20px;
+}
+
+/* Finish Ion Segment */

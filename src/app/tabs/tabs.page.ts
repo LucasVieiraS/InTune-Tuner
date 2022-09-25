@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
+  metronomeIcon = '../../assets/icon/metronome.svg';
+  guitarPick = '../../assets/icon/guitar-pick.svg';
+  musicNote = '../../assets/icon/music-note.svg';
+
   constructor() {}
 
 }

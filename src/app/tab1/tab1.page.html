@@ -1,17 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      TUNER
     </ion-title>
   </ion-toolbar>
+  <ion-segment mode="md" value="default">
+    <ion-segment-button value="default">
+      <ion-icon [src]="guitarIcon"></ion-icon>
+      <ion-label>GUITAR</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="segment">
+      <ion-icon [src]="bassIcon"></ion-icon>
+      <ion-label>BASS</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
 </ion-content>

@@ -40,3 +40,13 @@ ion-segment-button.ios::part(indicator-background) {
 }
 
 /* Finish Ion Segment */
+
+.background-image {
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: invert(1);
+  opacity: .1;
+}

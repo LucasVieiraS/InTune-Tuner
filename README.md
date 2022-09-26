@@ -20,6 +20,11 @@
 <img src="assets/images/preview2.png">
 <img src="assets/images/preview3.png">
 
+## Wiki:
+
+Licensing information, about:
+[InTune](https://github.com/LucasVieiraS/InTune-Tuner/wiki)
+
 ## Extra:
 
 Final Project created for [**CS50x**](https://cs50.harvard.edu/x/) 2022.

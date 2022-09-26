@@ -17,16 +17,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="background-image" style="background-image: url('../../assets/wave-background.gif')">
-
-  </div>
+  <div class="background-image" style="background-image: url('../../assets/wave-background.gif')"></div>
   <div class="container">
     <ion-label color="dark" class="note">{{ noteName }}</ion-label>
-    <ion-label class="note-warning" disabled>{{ currentFrequency }} HZ</ion-label>
+    <ion-label class="note-warning" disabled>{{ frequency }} HZ</ion-label>
     <ion-label color="dark" class="note-warning">Press to start.</ion-label>
-    <canvas id="guitar-tuner" height="300"></canvas>
   </div>
   <ion-chip color="dark" [outline]="true">
-    <ion-icon color="dark" [src]="guitarIcon"></ion-icon>
+    <ion-icon color="dark" [src]="guitarIcon" (click)="createCanvas()"></ion-icon>
   </ion-chip>
 </ion-content>

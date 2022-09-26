@@ -26,6 +26,7 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "angular-audio-context": "^32.0.13",
     "capacitor-voice-recorder": "^4.0.0",
     "ionicons": "^6.0.3",
     "ml5": "^0.6.0",

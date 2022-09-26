@@ -76,6 +76,10 @@ ion-segment-button.ios::part(indicator-background) {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  ion-icon {
+    font-size: 3rem;
+  }
 }
 
 ion-chip {

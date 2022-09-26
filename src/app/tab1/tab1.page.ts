@@ -28,8 +28,9 @@ export class Tab1Page {
   selected = 'guitar';
 
   p5;
-  constructor() {}
+  advice;
 
+  constructor() {}
 
   createCanvas() {
     this.hasStarted = true;
@@ -119,16 +120,19 @@ export class Tab1Page {
         p.fill(27, 166, 36);
         p.circle(p.width / 2, p.height / 2 - 75, 150);
         p.text('Hold there', p.width / 2, p.height - 20);
+        this.advice = 'Hold there';
       }
       if (difference > 1) {
         p.fill(237, 45, 45);
         p.circle(p.width / 2 + difference / 2, p.height / 2 - 75, 150);
         p.text('Tune Down', p.width / 2, p.height - 20);
+        this.advice = 'Tune Down';
       }
       if (difference < -1 ) {
         p.fill(245, 173, 73);
         p.circle(p.width / 2 + difference / 2, p.height / 2 - 75, 150);
         p.text('Tune Up', p.width / 2, p.height - 20);
+        this.advice = 'Tune Up';
       }
       p.noStroke();
       p.fill(56, 56, 56);

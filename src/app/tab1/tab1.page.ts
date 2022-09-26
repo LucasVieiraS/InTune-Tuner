@@ -15,6 +15,8 @@ export class Tab1Page {
   guitarIcon = '../../assets/icon/guitar.svg';
   bassIcon = '../../assets/icon/bass.svg';
 
+  //https://www.studybass.com/gear/bass-tone-and-eq/bass-frequency-range/
+
   noteName = 'C#';
   pitch;
 

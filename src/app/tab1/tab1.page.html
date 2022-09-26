@@ -5,11 +5,11 @@
     </ion-title>
   </ion-toolbar>
   <ion-segment mode="md" value="default">
-    <ion-segment-button value="default">
+    <ion-segment-button value="default" (click)="switchTo('guitar')">
       <ion-icon [src]="guitarIcon"></ion-icon>
       <ion-label>GUITAR</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="segment">
+    <ion-segment-button value="segment" (click)="switchTo('bass')">
       <ion-icon [src]="bassIcon"></ion-icon>
       <ion-label>BASS</ion-label>
     </ion-segment-button>
@@ -21,9 +21,10 @@
   <div class="container">
     <ion-label color="dark" class="note">{{ noteName }}</ion-label>
     <ion-label class="note-warning" disabled>{{ frequency }} HZ</ion-label>
-    <ion-label color="dark" class="note-warning">Press to start.</ion-label>
+    <ion-label color="dark" class="note-warning" [hidden]="hasStarted">Press to start.</ion-label>
   </div>
   <ion-chip color="dark" [outline]="true">
     <ion-icon color="dark" [src]="guitarIcon" (click)="createCanvas()"></ion-icon>
   </ion-chip>
+  <p>{{ selected }}</p>
 </ion-content>

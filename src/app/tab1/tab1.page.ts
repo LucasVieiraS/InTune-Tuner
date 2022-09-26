@@ -17,20 +17,30 @@ export class Tab1Page {
 
   //https://www.studybass.com/gear/bass-tone-and-eq/bass-frequency-range/
 
+  hasStarted = false;
+
   noteName = 'C#';
   pitch;
 
   onCanvasHidden = false;
   frequency = 0;
 
+  selected = 'guitar';
+
   p5;
   constructor() {}
 
 
   createCanvas() {
+    this.hasStarted = true;
     this.onCanvasHidden = true;
     new p5((p) => this.sketch(p));
   }
+
+  switchTo(instrument: string) {
+    this.selected = instrument;
+  }
+
   private sketch(p) {
     let freq = 0;
     const notes = [
@@ -41,6 +51,12 @@ export class Tab1Page {
       { note: 'F', freq: 222.22 },
       { note: 'B', freq: 246.94 },
       { note: 'E²', freq: 329.63 }
+    ];
+    const bassNotes = [
+      { note: 'E', freq: 41 },
+      { note: 'A', freq: 55 },
+      { note: 'D', freq: 73 },
+      { note: 'G', freq: 98 },
     ];
     p.setup = () => {
       p.createCanvas(350, 350);
@@ -76,14 +92,25 @@ export class Tab1Page {
     p.draw = () => {
       let noteDetected;
       let toneDiff = Infinity;
-      notes.forEach(note => {
-        const diff = freq - note.freq;
-        this.frequency = Math.floor(freq);
-        if (p.abs(diff) < p.abs(toneDiff)) {
-          noteDetected = note;
-          toneDiff = diff;
-        }
-      });
+      if (this.selected === 'guitar') {
+        notes.forEach(note => {
+          const diff = freq - note.freq;
+          this.frequency = Math.floor(freq);
+          if (p.abs(diff) < p.abs(toneDiff)) {
+            noteDetected = note;
+            toneDiff = diff;
+          }
+        });
+      } else {
+        bassNotes.forEach(note => {
+          const diff = freq - note.freq;
+          this.frequency = Math.floor(freq);
+          if (p.abs(diff) < p.abs(toneDiff)) {
+            noteDetected = note;
+            toneDiff = diff;
+          }
+        });
+      }
       const difference = toneDiff;
       p.background(248, 248, 248);
       p.fill(161, 161, 161);

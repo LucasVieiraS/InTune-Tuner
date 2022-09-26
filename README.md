@@ -4,6 +4,12 @@
 <p align="center">Music made easy.</p>
 <p align="center"><img height="300" src="src/assets/icon/favicon.png"</p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Ionic-%233880FF.svg?style=for-the-badge&logo=Ionic&logoColor=white" alt="Ionic Shield">
+  <img src="https://img.shields.io/badge/p5.js-ED225D?style=for-the-badge&logo=p5.js&logoColor=FFFFFF" alt="P5 Javascript Shield">
+  <img src="https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=reactivex&logoColor=white" alt="RX Javascript">
+</p>
+
 ## Startup:
 ```pwsh
   npm i

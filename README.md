@@ -18,6 +18,7 @@
 # Preview
 <img src="assets/images/preview1.png">
 <img src="assets/images/preview2.png">
+<img src="assets/images/preview3.png">
 
 ## Extra:
 

@@ -1,12 +1,18 @@
-# InTune
-Music made easy.
+<br>
 
-# Startup:
+<h1 align="center">InTune</h1>
+<p align="center">Music made easy.</p>
+<p align="center"><img height="300" src="src/assets/icon/favicon.png"</p>
+
+## Startup:
 ```pwsh
   npm i
   ionic serve
 ```
 # Preview
-[Preview1](assets/images/preview1.png)
+<img src="assets/images/preview1.png">
+<img src="assets/images/preview2.png">
 
-Final Project created for CS50x 2022
+## Extra:
+
+Final Project created for [**CS50x**](https://cs50.harvard.edu/x/) 2022.

@@ -8,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab3Page implements OnInit {
 
+  // STATS
   bpm = 145;
+  beatsPerMeasure = 4;
   holdingBPM = false;
 
-  beatsPerMeasure = 4;
-
+  // METRONOME OBJECT
   metronome;
+  // METRONOME STATE
   metronomeActivated = false;
 
   constructor(public metronomeService: MetronomeService) { }

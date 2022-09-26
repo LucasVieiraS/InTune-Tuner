@@ -17,15 +17,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="background-image" style="background-image: url('../../assets/wave-background.gif')"></div>
-  <div class="container">
+  <div id="background" class="background-image" style="background-image: url('../../assets/wave-background.gif')"></div>
+  <div id="text-section" class="container">
     <ion-label color="dark" class="note">{{ noteName }}</ion-label>
-    <ion-label class="note-warning" disabled>{{ frequency }} HZ</ion-label>
-    <ion-label *ngIf="advice" [color]="advice === 'Hold there' && 'success' || (advice === 'Tune Down' && 'danger' || 'warning')">{{ advice }}</ion-label>
-    <ion-icon *ngIf="advice" [name]="advice === 'Hold there' && 'happy' || (advice === 'Tune Down' && 'chevron-down' || 'chevron-up')" [color]="advice === 'Hold there' && 'success' || (advice === 'Tune Down' && 'danger' || 'warning')"></ion-icon>
+    <ion-label class="note-warning" disabled>{{ displayFrequency }} HZ</ion-label>
+    <ion-label *ngIf="hasStarted" [color]="advice === 'Hold there' && 'success' || (advice === 'Tune Down' && 'danger' || 'warning')">{{ advice }}</ion-label>
+    <ion-icon id="state" *ngIf="hasStarted && advice" [name]="advice === 'Hold there' && 'happy' || (advice === 'Tune Down' && 'chevron-down' || 'chevron-up')" [color]="advice === 'Hold there' && 'success' || (advice === 'Tune Down' && 'danger' || 'warning')"></ion-icon>
     <ion-label color="dark" class="note-warning" [hidden]="hasStarted">Press to start.</ion-label>
   </div>
-  <ion-chip color="dark" [outline]="true">
-    <ion-icon color="dark" [src]="guitarIcon" (click)="createCanvas()"></ion-icon>
+  <ion-chip id="start-button" color="dark" [color]="hasStarted && 'success' || 'dark'" [outline]="true">
+    <ion-icon color="dark" [color]="hasStarted && 'success' || 'dark'" [src]="guitarIcon" (click)="registerInput()"></ion-icon>
   </ion-chip>
 </ion-content>

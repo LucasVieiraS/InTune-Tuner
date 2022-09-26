@@ -28,7 +28,8 @@
     "@ionic/angular": "^6.1.9",
     "capacitor-voice-recorder": "^4.0.0",
     "ionicons": "^6.0.3",
-    "node-p5": "^1.0.4",
+    "ml5": "^0.6.0",
+    "p5": "^1.1.9",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

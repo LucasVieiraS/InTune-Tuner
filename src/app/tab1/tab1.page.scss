@@ -58,6 +58,12 @@ ion-segment-button.ios::part(indicator-background) {
 }
 
 .note-warning {
+  color: rgb(255, 94, 0);
+  margin-bottom: .5rem;
+}
+
+.note-warning+.note-warning {
+  color: gray;
   margin-bottom: 5rem;
 }
 
@@ -70,4 +76,30 @@ ion-segment-button.ios::part(indicator-background) {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+ion-chip {
+  position: absolute;
+  bottom: 4.5rem;
+  left: 50%;
+
+  width: 4rem;
+  height: 4rem;
+
+  border-radius: 90%;
+
+  padding: 0;
+  margin: 0;
+
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+  ion-icon {
+    margin: auto;
+    width: 70%;
+    height: 70%;
+    transition: .2s ease-in;
+    filter: invert(1);
+  }
 }

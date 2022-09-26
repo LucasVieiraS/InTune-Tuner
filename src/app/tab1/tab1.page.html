@@ -21,7 +21,12 @@
 
   </div>
   <div class="container">
-    <ion-label color="dark" class="note">C#</ion-label>
-    <ion-label color="dark" class="note-warning">Pluck a note to start.</ion-label>
+    <ion-label color="dark" class="note">{{ noteName }}</ion-label>
+    <ion-label class="note-warning" disabled>{{ currentFrequency }} HZ</ion-label>
+    <ion-label color="dark" class="note-warning">Press to start.</ion-label>
+    <canvas id="guitar-tuner" height="300"></canvas>
   </div>
+  <ion-chip color="dark" [outline]="true">
+    <ion-icon color="dark" [src]="guitarIcon"></ion-icon>
+  </ion-chip>
 </ion-content>

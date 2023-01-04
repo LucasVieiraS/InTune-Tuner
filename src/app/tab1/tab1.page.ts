@@ -24,11 +24,10 @@ export class Tab1Page {
   // DISPLAY
   noteName = 'C#';
   selected = 'guitar';
-
   displayFrequency = 0;
 
   // STATS
-  detuneDifference = 4;
+  detuneDifference = 2;
   tunedQueue = 0;
   elapsedTimeRightPitch;
 
@@ -43,7 +42,6 @@ export class Tab1Page {
     { note: 'A', freq: 110.00 },
     { note: 'D', freq: 146.83 },
     { note: 'G', freq: 196.00 },
-    { note: 'F', freq: 222.22 },
     { note: 'B', freq: 246.94 },
     { note: 'E²', freq: 329.63 }
   ];

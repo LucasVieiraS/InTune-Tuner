@@ -27,7 +27,7 @@ export class Tab1Page {
   displayFrequency = 0;
 
   // STATS
-  detuneDifference = 2;
+  detuneDifference = 4;
   tunedQueue = 0;
   elapsedTimeRightPitch;
 

@@ -64,11 +64,20 @@ export class Tab1Page {
   constructor(private alertController: AlertController) {}
 
   async presentAlert() {
+    if (localStorage.getItem('tunerTerms') == null) return;
     const alert = await this.alertController.create({
       header: 'Permission Alert',
       subHeader: '',
       message: 'InTune Tuner needs your audio input to analyze your sound. Please try refreshing the page and allowing the use of a microphone or system audio to use the tuner.',
-      buttons: ['Accept'],
+      buttons: [
+        {
+          text: 'Accept',
+          role: 'confirm',
+          handler: () => {
+              localStorage.setItem('tunerTerms', 'true')
+          },
+        },
+      ],
     });
 
     await alert.present();

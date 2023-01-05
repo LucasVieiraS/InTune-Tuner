@@ -18,11 +18,20 @@ export class Tab2Page implements OnInit {
   constructor(private toastController: ToastController, private alertController: AlertController) {}
 
   async presentRequestAlert() {
+    if (localStorage.getItem('recorderTerms') == null) return;
     const alert = await this.alertController.create({
       header: 'Permission Alert',
       subHeader: '',
       message: 'InTune Tuner needs your audio input to analyze your sound. Please try refreshing the page and allowing the use of a microphone or system audio to use the tuner.',
-      buttons: ['Accept'],
+      buttons: [
+        {
+          text: 'Accept',
+          role: 'confirm',
+          handler: () => {
+              localStorage.setItem('recorderTerms', 'true')
+          },
+        },
+      ],
     });
 
     await alert.present();

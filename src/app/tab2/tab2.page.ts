@@ -18,7 +18,7 @@ export class Tab2Page implements OnInit {
   constructor(private toastController: ToastController, private alertController: AlertController) {}
 
   async presentRequestAlert() {
-    if (localStorage.getItem('recorderTerms') == null) return;
+    if (localStorage.getItem('recorderTerms') === null) return;
     const alert = await this.alertController.create({
       header: 'Permission Alert',
       subHeader: '',

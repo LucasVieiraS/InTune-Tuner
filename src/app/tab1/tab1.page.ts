@@ -64,7 +64,7 @@ export class Tab1Page {
   constructor(private alertController: AlertController) {}
 
   async presentAlert() {
-    if (localStorage.getItem('tunerTerms') == null) return;
+    if (localStorage.getItem('tunerTerms') === null) return;
     const alert = await this.alertController.create({
       header: 'Permission Alert',
       subHeader: '',

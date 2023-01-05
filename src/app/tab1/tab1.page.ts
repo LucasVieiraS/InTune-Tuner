@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 declare const p5;
 declare const ml5;
@@ -60,7 +61,18 @@ export class Tab1Page {
 
   public pitchReached = new Audio('../../assets/audio/pitch-reached.mp3');
 
-  constructor() {}
+  constructor(private alertController: AlertController) {}
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Permission Alert',
+      subHeader: '',
+      message: 'InTune Tuner needs your audio input to analyze your sound. Please try refreshing the page and allowing the use of a microphone or system audio to use the tuner.',
+      buttons: ['Accept'],
+    });
+
+    await alert.present();
+  }
 
   registerInput() {
     this.hasStarted = !this.hasStarted;
@@ -74,6 +86,10 @@ export class Tab1Page {
 
   switchTo(instrument: string) {
     this.selected = instrument;
+  }
+
+  ionViewDidEnter() {
+    this.presentAlert();
   }
 
   checkTunedQueue() {

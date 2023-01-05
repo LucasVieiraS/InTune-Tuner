@@ -17,6 +17,17 @@ export class Tab2Page implements OnInit {
 
   constructor(private toastController: ToastController, private alertController: AlertController) {}
 
+  async presentRequestAlert() {
+    const alert = await this.alertController.create({
+      header: 'Permission Alert',
+      subHeader: '',
+      message: 'InTune Tuner needs your audio input to analyze your sound. Please try refreshing the page and allowing the use of a microphone or system audio to use the tuner.',
+      buttons: ['Accept'],
+    });
+
+    await alert.present();
+  }
+
   async presentAlert(_header: string, _subheader: string, _message: string, callback: any, callbackParams: any, object: any) {
     const alert = await this.alertController.create({
       header: _header,
@@ -92,6 +103,10 @@ export class Tab2Page implements OnInit {
       console.log(result);
       this.storedFileNames = result.files;
     });
+  }
+
+  ionViewDidEnter() {
+    this.presentRequestAlert();
   }
 
   ngOnInit() {

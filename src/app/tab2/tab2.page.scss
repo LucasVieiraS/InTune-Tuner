@@ -1,42 +1,28 @@
 blockquote {
   display: flex;
   align-items: center;
-  text-align: center;
 
   background: linear-gradient(90deg, rgba(255,34,246,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 
   border-radius: 6px;
-  width: 90vw;
+  width: 100%;
 
   margin: auto;
   margin-top: 1rem;
 
   ion-label {
+    width: 100%;
     padding: .75rem;
     font-weight: 500;
+    text-align: center;
   }
 }
 
 ion-list {
-  width: 90vw;
-
-  padding: .5rem;
-  margin: auto;
+  margin: 0 !important;
+  margin-top: 14px !important;
 }
 
-h2 {
-  color: white;
-  font-weight: 600;
-  text-align: center;
-
-  width: 90vw;
-  padding: 0;
-
-  margin: auto;
-
-  margin-top: 1rem;
-  margin-bottom: 0rem;
-}
 
 ion-chip {
   position: absolute;
@@ -61,6 +47,22 @@ ion-chip {
     height: 70%;
     transition: .2s ease-in;
   }
+}
+
+ion-item {
+  width: 100%;
+  height: fit-content;
+  ion-icon {
+    aspect-ratio: 1/1;
+    max-width: 2rem;
+    max-height: 2rem;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+ion-grid {
+  padding-inline: 1rem;
 }
 
 ion-item-sliding {
@@ -103,4 +105,6 @@ ion-item-sliding {
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  height: fit-content;
+  max-height: 3rem !important;
 }

@@ -18,14 +18,88 @@
 
 <ion-content [fullscreen]="true">
   <div id="background" class="background-image" style="background-image: url('../../assets/wave-background.gif')"></div>
-  <div id="text-section" class="container">
-    <ion-label color="dark" class="note">{{ noteName }}</ion-label>
-    <ion-label class="note-warning" disabled>{{ displayFrequency }} HZ</ion-label>
-    <ion-label *ngIf="hasStarted" [color]="advice === 'Hold there' && 'success' || (advice === 'Tune Down' && 'danger' || 'warning')">{{ advice }}</ion-label>
-    <ion-icon id="state" *ngIf="hasStarted && advice" [name]="advice === 'Hold there' && 'happy' || (advice === 'Tune Down' && 'chevron-down' || 'chevron-up')" [color]="advice === 'Hold there' && 'success' || (advice === 'Tune Down' && 'danger' || 'warning')"></ion-icon>
-    <ion-label color="dark" class="note-warning" [hidden]="hasStarted">Press to start.</ion-label>
-  </div>
+  <ion-grid>
+    <ion-col size="3" *ngIf="selected === 'guitar'">
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'D'" [color]="tunningSpecificNote !== 'D' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">D</ion-chip>
+      </ion-row>
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'A'" [color]="tunningSpecificNote !== 'A' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">A</ion-chip>
+      </ion-row>
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'E¹'" [color]="tunningSpecificNote !== 'E¹' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">E¹</ion-chip>
+      </ion-row>
+    </ion-col>
+    <ion-col size="3" *ngIf="selected === 'bass'">
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'A'" [color]="tunningSpecificNote !== 'A' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">A</ion-chip>
+      </ion-row>
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'E'" [color]="tunningSpecificNote !== 'E' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">E</ion-chip>
+      </ion-row>
+    </ion-col>
+    <ion-col size="6">
+      <ion-row>
+        <ion-spinner name="crescent" *ngIf="hasEverStarted && firstStartLoad"></ion-spinner>
+      </ion-row>
+      <ion-row>
+        <ion-label class="loading-warning" disabled *ngIf="hasEverStarted && firstStartLoad">Loading
+          tuner...</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label [color]="pitchReachedDelay === false ? 'dark' : 'success'" class="note" *ngIf="!firstStartLoad">{{
+          noteName }}</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label class="note-warning" disabled *ngIf="!firstStartLoad" [hidden]="!hasStarted">{{ displayFrequency }}
+          HZ</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-label *ngIf="hasStarted && !firstStartLoad"
+          [color]="advice === 'Hold there' && 'success' || (advice === 'Tune Down' && 'danger' || 'warning')">{{ advice
+          }}</ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-icon id="state" *ngIf="hasStarted && advice && !firstStartLoad"
+          [name]="advice === 'Hold there' && 'happy' || (advice === 'Tune Down' && 'chevron-down' || 'chevron-up')"
+          [color]="advice === 'Hold there' && 'success' || (advice === 'Tune Down' && 'danger' || 'warning')"></ion-icon>
+      </ion-row>
+      <ion-row>
+        <ion-label color="dark" class="start-warning" [hidden]="hasStarted">Press to start</ion-label>
+      </ion-row>
+    </ion-col>
+    <ion-col size="3" *ngIf="selected === 'guitar'">
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'G'" [color]="tunningSpecificNote !== 'G' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">G</ion-chip>
+      </ion-row>
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'B'" [color]="tunningSpecificNote !== 'B' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">B</ion-chip>
+      </ion-row>
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'E²'" [color]="tunningSpecificNote !== 'E²' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">E²</ion-chip>
+      </ion-row>
+    </ion-col>
+    <ion-col size="3" *ngIf="selected === 'bass'">
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'D'" [color]="tunningSpecificNote !== 'D' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">D</ion-chip>
+      </ion-row>
+      <ion-row>
+        <ion-chip [outline]="tunningSpecificNote !== 'G'" [color]="tunningSpecificNote !== 'G' ? 'orange' : 'success'"
+          (click)="setTunningSpecificNote($event)">G</ion-chip>
+      </ion-row>
+    </ion-col>
+  </ion-grid>
   <ion-chip id="start-button" color="dark" [color]="hasStarted && 'success' || 'dark'" [outline]="true">
-    <ion-icon color="dark" [color]="hasStarted && 'success' || 'dark'" [src]="guitarIcon" (click)="registerInput()"></ion-icon>
+    <ion-icon color="dark" [color]="hasStarted && 'success' || 'dark'" [src]="guitarIcon"
+      (click)="registerInput()"></ion-icon>
   </ion-chip>
 </ion-content>

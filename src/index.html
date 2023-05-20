@@ -3,12 +3,13 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Ionic App</title>
+  <title>InTune - Your favorite tuner</title>
 
   <base href="/" />
 
   <meta name="color-scheme" content="dark" />
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport"
+    content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="msapplication-tap-highlight" content="no" />
 
@@ -18,10 +19,38 @@
   <!-- add to homescreen for ios -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+  <!-- Primary Meta Tags -->
+  <title>InTune - Your favorite tuner</title>
+  <meta name="title" content="InTune - Your favorite tuner">
+  <meta name="description"
+    content="The ultimate app for guitarists and bassists. Stay in perfect rhythm with a built-in metronome, while fine-tuning your instrument with precision. Create seamless audio loops to practice and enhance your playing. Get in tune and elevate your musical skills with InTune.">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="in-tune-tuner.vercel.app">
+  <meta property="og:title" content="InTune - Your favorite tuner">
+  <meta property="og:description"
+    content="The ultimate app for guitarists and bassists. Stay in perfect rhythm with a built-in metronome, while fine-tuning your instrument with precision. Create seamless audio loops to practice and enhance your playing. Get in tune and elevate your musical skills with InTune.">
+  <meta property="og:image"
+    content="https://raw.githubusercontent.com/LucasVieiraS/InTune-Tuner/main/assets/images/preview1.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="in-tune-tuner.vercel.app">
+  <meta property="twitter:title" content="InTune - Your favorite tuner">
+  <meta property="twitter:description"
+    content="The ultimate app for guitarists and bassists. Stay in perfect rhythm with a built-in metronome, while fine-tuning your instrument with precision. Create seamless audio loops to practice and enhance your playing. Get in tune and elevate your musical skills with InTune.">
+  <meta property="twitter:image"
+    content="https://raw.githubusercontent.com/LucasVieiraS/InTune-Tuner/main/assets/images/preview1.png">
 </head>
 
 <body>
   <app-root></app-root>
+  <script defer>
+    // Force mobile view, this version is purely for mobile website display.
+    document.body.style = 'width: 23vw; position: absolute; left: 50%; min-width: 25rem; max-width: 98vw; top: 50%; transform: translate(-50%, -50%);'
+  </script>
 </body>
 
 </html>

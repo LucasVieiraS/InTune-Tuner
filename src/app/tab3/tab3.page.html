@@ -1,39 +1,58 @@
 <ion-header [translucent]="true" mode="md">
   <ion-toolbar mode="md">
-    <ion-title>
-      METRONOME
-    </ion-title>
+    <ion-title> METRONOME </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
-    <img draggable="false" src="../../assets//icon/plain-triangle.svg" [style]="metronomeService.count <= 1 && 'filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);' || ''" />
+  <ion-grid>
+    <ion-col>
+      <!--TRIANGLE-->
+      <ion-row id="triangle">
+        <img draggable="false" src="../../assets//icon/plain-triangle.svg" alt="BPM Triangle"
+          [style]="metronomeService.count <= 1 && 'filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);' || ''" />
+      </ion-row>
+      <!--BUTTONS 1-->
+      <ion-row class="tempo-settings">
+        <ion-col>
+          <ion-chip [outline]="true" color="dark" (click)="setBPM(-1)" (mousedown)="setHoldingBPM(-10)"
+            (mouseup)="stopHoldingBPM()" (mouseout)="stopHoldingBPM()">
+            <ion-icon name="remove" color="dark"></ion-icon>
+          </ion-chip>
+        </ion-col>
+        <ion-col size="8" class="bpm-display">
+          <span class="tempo">{{bpm}}</span>
+          <span class="bpm">BPM</span>
+        </ion-col>
+        <ion-col>
+          <ion-chip [outline]="true" color="dark" (click)="setBPM(1)" (mousedown)="setHoldingBPM(10)"
+            (mouseup)="stopHoldingBPM()" (mouseout)="stopHoldingBPM()">
+            <ion-icon name="add" color="dark"></ion-icon>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+      <!--BUTTONS 2-->
+      <ion-row class="beat-per-measure">
+        <ion-col>
+          <ion-chip [outline]="true" color="dark" (click)="setBPM2(-1)">
+            <ion-icon name="remove" color="dark"></ion-icon>
+          </ion-chip>
+        </ion-col>
+        <ion-col size="8" class="bpm-display">
+          <span class="tempo">{{ beatsPerMeasure }}</span>
+          <span class="bpm">BEATS PER MEASURE</span>
+        </ion-col>
+        <ion-col>
+          <ion-chip [outline]="true" color="dark" (click)="setBPM2(1)">
+            <ion-icon name="add" color="dark"></ion-icon>
+          </ion-chip>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-grid>
+  <div></div>
 
-    <div class="tempo-settings">
-      <ion-chip [outline]="true" color="dark" (click)="setBPM(-1)" (mousedown)="setHoldingBPM(-10)" (mouseup)="stopHoldingBPM()" (mouseout)="stopHoldingBPM()">
-        <ion-icon name="remove" color="dark"></ion-icon>
-      </ion-chip>
-      <div class="bpm-display">
-        <span class="tempo">{{bpm}}</span>
-        <span class="bpm">BPM</span>
-      </div>
-      <ion-chip [outline]="true" color="dark" (click)="setBPM(1)"  (mousedown)="setHoldingBPM(10)" (mouseup)="stopHoldingBPM()" (mouseout)="stopHoldingBPM()">
-        <ion-icon name="add" color="dark"></ion-icon>
-      </ion-chip>
-    </div>
-  </div>
-  <div class="beat-per-measure">
-    <ion-chip [outline]="true" color="dark" (click)="setBPM2(-1)">
-      <ion-icon name="remove" color="dark"></ion-icon>
-    </ion-chip>
-    <div class="bpm-display-2">
-      <span class="tempo-2">{{ beatsPerMeasure }}</span>
-      <span class="bpm-2">BEATS PER MEASURE</span>
-    </div>
-    <ion-chip [outline]="true" color="dark" (click)="setBPM2(1)">
-      <ion-icon name="add" color="dark"></ion-icon>
-    </ion-chip>
-  </div>
-  <ion-button fill="outline" (click)="startMetronome()">TAP TO <span [style]="!metronomeActivated && 'color: lime;' || 'color: red;'">{{ !metronomeActivated && "START" || "STOP" }}</span></ion-button>
+  <ion-button fill="outline" (click)="startMetronome()">TAP TO
+    <span [style]="!metronomeActivated && 'color: lime;' || 'color: red;'">{{ !metronomeActivated && "START" || "STOP"
+      }}</span></ion-button>
 </ion-content>

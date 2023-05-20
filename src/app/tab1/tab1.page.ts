@@ -1,6 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { Component } from '@angular/core';
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
+/* eslint-disable max-len */
+// Interfaces
+interface Note {
+  note: string;
+  freq: number;
+}
+
+interface SelectedToNote {
+  guitar: Note[];
+  bass: Note[];
+}
+
+// Component
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 
 declare const p5;
@@ -11,7 +23,7 @@ declare const ml5;
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
 
   // ICONS
   guitarIcon = '../../assets/icon/guitar.svg';
@@ -20,25 +32,28 @@ export class Tab1Page {
   // STATE
   hasStarted = false;
   hasEverStarted = false;
+  firstStartLoad = false;
   pitchReachedDelay = false;
 
   // DISPLAY
-  noteName = 'C#';
+  noteName = 'E¹';
   selected = 'guitar';
   displayFrequency = 0;
+  tunningSpecificNote;
 
   // STATS
-  detuneDifference = 4;
+  detuneDifference = 3;
   tunedQueue = 0;
-  elapsedTimeRightPitch;
+  elapsedTimeRightPitch: number;
 
   // P5
-  p5;
-  advice;
-  pitch;
+  p5: any;
+  p5alt: any;
+  advice: string;
+  pitch: any;
 
   // NOTES FREQUENCY
-  guitarNotes = [
+  guitarNotes: Note[] = [
     { note: 'E¹', freq: 82.41 },
     { note: 'A', freq: 110.00 },
     { note: 'D', freq: 146.83 },
@@ -46,7 +61,7 @@ export class Tab1Page {
     { note: 'B', freq: 246.94 },
     { note: 'E²', freq: 329.63 }
   ];
-  bassNotes = [
+  bassNotes: Note[] = [
     { note: 'E', freq: 41 },
     { note: 'A', freq: 55 },
     { note: 'D', freq: 73 },
@@ -54,28 +69,47 @@ export class Tab1Page {
   ];
 
   // UTIL
-  selectedToNote = {
+  selectedToNote: SelectedToNote = {
     guitar: this.guitarNotes,
     bass: this.guitarNotes
   };
 
-  public pitchReached = new Audio('../../assets/audio/pitch-reached.mp3');
+  permissionMessage = 'InTune Tuner needs your audio input to analyze your sound. Please try refreshing the page and allowing the use of a microphone or system audio to use the tuner';
 
-  constructor(private alertController: AlertController) {}
+  pitchReached = new Audio('../../assets/audio/pitch-reached.mp3');
+
+  constructor(private alertController: AlertController) { }
+
+  setTunningSpecificNote(event: any) {
+    const note = event.target.innerHTML;
+    if (this.tunningSpecificNote === note) {
+      this.tunningSpecificNote = null;
+      this.noteName = this.selected === 'guitar' ? this.guitarNotes[0].note : this.bassNotes[0].note;
+    } else {
+      this.tunningSpecificNote = note;
+      this.noteName = note;
+    }
+  }
+
+  ngOnInit() {
+    this.presentAlert();
+  }
 
   async presentAlert() {
-    console.log(localStorage.getItem('tunerTerms') === null)
-    if (localStorage.getItem('tunerTerms') === null) return;
+    if (localStorage.getItem('tunerTerms') === null) {
+      return;
+    }
+
     const alert = await this.alertController.create({
       header: 'Permission Alert',
       subHeader: '',
-      message: 'InTune Tuner needs your audio input to analyze your sound. Please try refreshing the page and allowing the use of a microphone or system audio to use the tuner.',
+      message: this.permissionMessage,
       buttons: [
         {
           text: 'Accept',
           role: 'confirm',
           handler: () => {
-              localStorage.setItem('tunerTerms', 'true')
+            localStorage.setItem('tunerTerms', 'true');
           },
         },
       ],
@@ -84,18 +118,22 @@ export class Tab1Page {
     await alert.present();
   }
 
-  registerInput() {
+  registerInput(): any {
     this.hasStarted = !this.hasStarted;
+    this.pitchReachedDelay = false;
     if (!this.hasEverStarted) {
       this.hasEverStarted = true;
-      new p5((tuner) => this.handleInput(tuner, this));
-    } else {
-      this.handleInput(this.p5, this);
+      this.firstStartLoad = true;
+      return new p5((tuner: any) => this.handleInput(tuner, this));
     }
+    return this.handleInput(this.p5, this.p5alt);
   }
 
   switchTo(instrument: string) {
     this.selected = instrument;
+    this.noteName = this.selected === 'guitar' ? this.guitarNotes[0].note : this.bassNotes[0].note;
+    this.tunningSpecificNote = null;
+    this.pitchReachedDelay = false;
   }
 
   ionViewDidEnter() {
@@ -117,7 +155,7 @@ export class Tab1Page {
     }
   }
 
-  renderDisplay(tuner: any, toneDiff: number, noteDetected: any) {
+  renderDisplay(tuner: any, toneDiff: number, noteDetected: Note) {
     if (tuner.abs(toneDiff) < this.detuneDifference) {
       this.advice = 'Hold there';
       if (this.elapsedTimeRightPitch === null) {
@@ -126,37 +164,39 @@ export class Tab1Page {
     } else if (toneDiff > this.detuneDifference) {
       this.advice = 'Tune Down';
       this.elapsedTimeRightPitch = null;
-    } else if (toneDiff < -this.detuneDifference ) {
+    } else if (toneDiff < -this.detuneDifference) {
       this.advice = 'Tune Up';
       this.elapsedTimeRightPitch = null;
     }
-    this.noteName = noteDetected.note;
+    if (this.noteName !== noteDetected.note && this.pitchReachedDelay === true) {
+      this.pitchReachedDelay = false;
+    }
+    this.noteName = this.tunningSpecificNote != null ? this.tunningSpecificNote : noteDetected.note;
     this.checkTunedQueue();
   }
 
-  handleInput(tuner, object) {
+  handleInput(tuner: any, object: any) {
     let freq = 0;
 
     object.p5 = tuner;
+    object.p5alt = object;
 
     tuner.setup = () => {
       const modelUrl = 'https://cdn.jsdelivr.net/gh/ml5js/ml5-data-and-models/models/pitch-detection/crepe/';
       const audioContext = new AudioContext();
-      const mic = new p5.AudioIn(); // eslint-disable-line @typescript-eslint/no-unsafe-assignment
+      const mic = new p5.AudioIn();
       let pitch;
       mic.start(loadModel);
 
-      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       function loadModel() {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         pitch = ml5.pitchDetection(modelUrl, audioContext, mic.stream, modelLoaded);
       }
 
-      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
       function modelLoaded() {
+        object.firstStartLoad = false;
         pitch.getPitch(gotPitch);
       }
-      // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+
       function gotPitch(error: string, frequency: number) {
         if (error) {
           console.error(error);
@@ -169,9 +209,12 @@ export class Tab1Page {
     };
 
     tuner.draw = () => {
-      let noteDetected;
+      let noteDetected: Note;
       let toneDiff = Infinity;
       this.selectedToNote[this.selected].forEach(note => {
+        if (this.tunningSpecificNote && this.tunningSpecificNote !== note.note) {
+          return;
+        }
         const diff = freq - note.freq;
         this.displayFrequency = Math.floor(freq);
         if (tuner.abs(diff) < tuner.abs(toneDiff)) {

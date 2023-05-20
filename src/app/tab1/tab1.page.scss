@@ -39,6 +39,12 @@ ion-segment-button.ios::part(indicator-background) {
   border-radius: 20px;
 }
 
+ion-spinner {
+  aspect-ratio: 1/1;
+  height: 6rem;
+  width: 10rem;
+}
+
 /* Finish Ion Segment */
 
 .background-image {
@@ -52,6 +58,11 @@ ion-segment-button.ios::part(indicator-background) {
   opacity: .1;
 }
 
+.loading-warning {
+  color: rgb(255, 94, 0);
+  margin-top: .5rem;
+}
+
 .note {
   user-select: none;
   font-size: 7rem;
@@ -61,32 +72,62 @@ ion-segment-button.ios::part(indicator-background) {
   color: rgb(255, 94, 0);
   margin-bottom: .5rem;
 }
-
-.note-warning+.note-warning {
+.start-warning {
   color: gray;
-  margin-bottom: 5rem;
+  margin-bottom: .5;
 }
 
-.container {
-  height: 100%;
-  width: 100%;
-  margin: auto;
-
+ion-chip {
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  aspect-ratio: 1/1;
+  text-align: center;
+  margin-bottom: 1rem;
+}
 
-  ion-icon {
-    font-size: 3rem;
+ion-grid {
+  display: flex;
+  height: 100%;
+  ion-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+
+    height: 100%;
+    width: fit-content;
+    max-width: 30vh;
+
+    margin: 0;
+  }
+  ion-col:nth-child(1) {
+    width: 10vh !important;
+  }
+  ion-col:nth-child(3) {
+    width: 10vh !important;
+  }
+  ion-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: row;
+
+    width: 100%;
+    height: fit-content;
   }
 }
 
 #state {
   margin-top: 5px;
+  font-size: 3rem;
 }
 
-ion-chip {
+#start-button {
   position: absolute;
   bottom: 4.5rem;
   left: 50%;

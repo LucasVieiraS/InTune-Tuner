@@ -48,7 +48,8 @@ export class Tab1Page implements OnInit {
 
   // P5
   p5: any;
-  p5alt: any;
+  tuner: any;
+
   advice: string;
   pitch: any;
 
@@ -118,22 +119,31 @@ export class Tab1Page implements OnInit {
     await alert.present();
   }
 
+  resetStates() {
+    this.noteName = this.selected === 'guitar' ? this.guitarNotes[0].note : this.bassNotes[0].note;
+    this.displayFrequency = 0;
+    this.tunningSpecificNote = null;
+    this.pitchReachedDelay = false;
+  }
+
   registerInput(): any {
     this.hasStarted = !this.hasStarted;
     this.pitchReachedDelay = false;
-    if (!this.hasEverStarted) {
-      this.hasEverStarted = true;
-      this.firstStartLoad = true;
-      return new p5((tuner: any) => this.handleInput(tuner, this));
+    if (this.hasStarted) {
+      if (!this.hasEverStarted) {
+        this.hasEverStarted = true;
+        this.firstStartLoad = true;
+        this.p5 = new p5((tuner: any) => this.tuner = tuner);
+        return this.handleInput(this.tuner, this);
+      }
+    } else {
+      this.resetStates();
     }
-    return this.handleInput(this.p5, this.p5alt);
   }
 
   switchTo(instrument: string) {
     this.selected = instrument;
-    this.noteName = this.selected === 'guitar' ? this.guitarNotes[0].note : this.bassNotes[0].note;
-    this.tunningSpecificNote = null;
-    this.pitchReachedDelay = false;
+    this.resetStates();
   }
 
   ionViewDidEnter() {
@@ -156,6 +166,9 @@ export class Tab1Page implements OnInit {
   }
 
   renderDisplay(tuner: any, toneDiff: number, noteDetected: Note) {
+    if (!this.hasStarted) {
+      return;
+    }
     if (tuner.abs(toneDiff) < this.detuneDifference) {
       this.advice = 'Hold there';
       if (this.elapsedTimeRightPitch === null) {
@@ -175,13 +188,11 @@ export class Tab1Page implements OnInit {
     this.checkTunedQueue();
   }
 
-  handleInput(tuner: any, object: any) {
+  handleInput(tuner: any, object: any, runManually: boolean = false) {
     let freq = 0;
 
-    object.p5 = tuner;
-    object.p5alt = object;
-
     tuner.setup = () => {
+      console.log('Setup');
       const modelUrl = 'https://cdn.jsdelivr.net/gh/ml5js/ml5-data-and-models/models/pitch-detection/crepe/';
       const audioContext = new AudioContext();
       const mic = new p5.AudioIn();
@@ -207,6 +218,10 @@ export class Tab1Page implements OnInit {
         pitch.getPitch(gotPitch);
       }
     };
+
+    if (runManually) {
+      tuner.setup();
+    }
 
     tuner.draw = () => {
       let noteDetected: Note;

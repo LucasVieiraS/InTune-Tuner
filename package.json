@@ -29,7 +29,7 @@
     "angular-audio-context": "^32.0.13",
     "capacitor-voice-recorder": "^4.0.0",
     "ionicons": "^6.0.3",
-    "ml5": "^0.6.0",
+    "ml5": "^1.0.1",
     "p5": "^1.1.9",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
